@@ -140,7 +140,7 @@
 
         /** AI Logic with Exponential Backoff **/
         async function generateAIQuestions(config) {
-            const systemPrompt = `You are a National Science Bowl (NSB) question generator for ${config.division}. Create ${config.count} pairs of TOSS-UP and BONUS questions. Topics: ${config.topics.join(', ')}. Return a JSON array of objects: { id, category, type: "TOSS-UP", qType: "Multiple Choice"|"Short Answer", question, options: [4 strings]|null, answer, bonus: { type: "BONUS", qType, question, options, answer } }.`;
+            const systemPrompt = `You are a National Science Bowl (NSB) question generator for ${config.division}. Create ${config.count} pairs of TOSS-UP and BONUS questions. Make sure there are three types of questions: Short Answer, Multiple Choice, Short Answer Multiple Select. Multiple Choice is WXYZ, allow the user to type just that letter or the full response as the answer. Multiple select will be 3-4 options, sorted as 1, 2, 3, 4, and the user can input those strings in striaght order (account for spaces and commas) and NOT the words. Topics: ${config.topics.join(', ')}. Return a JSON array of objects: { id, category, type: "TOSS-UP", qType: "Multiple Choice"|"Short Answer", question, options: [4 strings]|null, answer, bonus: { type: "BONUS", qType, question, options, answer } }.`;
             const userPrompt = `Generate the pairs now.`;
 
             let retries = 0;
@@ -173,7 +173,7 @@
             const navItems = [
                 { id: 'dashboard', label: 'Dashboard', icon: Icons.Target },
                 { id: 'generate', label: 'AI Generator', icon: Icons.Sparkles },
-                { id: 'shotput', label: 'Shot Put', icon: Icons.ClipboardList },
+                { id: 'shotput', label: 'Rapid Fire', icon: Icons.ClipboardList },
                 { id: 'review', label: 'Review', icon: Icons.History },
                 { id: 'settings', label: 'Settings', icon: Icons.Settings },
             ];
